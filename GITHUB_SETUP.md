@@ -47,7 +47,7 @@ git push -u origin main
 **Or if you prefer SSH:**
 
 ```bash
-git remote add origin git@github.com:YOUR_USERNAME/health-insurance-data-warehouse.git
+git remote add origin git@github.com:njaltran/health-insurance-data-warehouse.git
 git push -u origin main
 ```
 

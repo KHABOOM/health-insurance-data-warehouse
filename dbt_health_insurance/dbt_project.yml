@@ -41,6 +41,18 @@ models:
       +schema: cleaned
       +tags: ["cleaned", "production"]
 
+    # Star schema models - materialized as tables in separate dataset
+    star_schema:
+      +materialized: table
+      +schema: star_schema
+      +tags: ["star_schema", "dimensional"]
+
+    # Data marts - analytical views/tables for business users
+    data_marts:
+      +materialized: table
+      +schema: data_marts
+      +tags: ["data_marts", "analytics"]
+
 # Seeds configuration
 seeds:
   health_insurance_dw:
