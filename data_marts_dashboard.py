@@ -374,9 +374,10 @@ def _(customer_360_charts, mo):
     # Display all charts for the selected data mart
     if customer_360_charts:
         chart_displays = [mo.ui.plotly(chart) for chart in customer_360_charts]
-        mo.vstack(chart_displays)
+        charts_display = mo.vstack(chart_displays)
     else:
-        mo.md("*Select a data mart to view visualizations*")
+        charts_display = mo.md("*Select a data mart to view visualizations*")
+    charts_display
     return
 
 
