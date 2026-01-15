@@ -13,8 +13,8 @@ def _():
     import pandas as pd
     import plotly.express as px
     import plotly.graph_objects as go
-    from google.cloud import bigquery
-    return bigquery, mo, px
+    import os
+    return mo, os, pd, px
 
 
 @app.cell
@@ -24,20 +24,16 @@ def _(mo):
 
     **Interactive visualization of your complete 5-layer data warehouse**
 
-    This dashboard connects to your BigQuery data marts using the MCP BigQuery connection and provides comprehensive analytics across all dimensions.
+    This dashboard displays data from exported CSV files, providing comprehensive analytics across all dimensions.
     """)
     return
 
 
 @app.cell
-def _(bigquery):
-    # Initialize BigQuery client
-    client = bigquery.Client(project='dw-health-insurance-bipm')
-
-    # Define dataset and tables
-    project_id = 'dw-health-insurance-bipm'
-    dataset_id = 'raw_dataset_data_marts'
-    return client, dataset_id, project_id
+def _(os):
+    # Define data directory
+    data_dir = os.path.join(os.path.dirname(__file__) if '__file__' in globals() else '.', 'data')
+    return (data_dir,)
 
 
 @app.cell
@@ -66,8 +62,8 @@ def _(mo):
 
 
 @app.cell
-def _(client, data_mart_selector, dataset_id, project_id):
-    # Load selected data mart
+def _(data_dir, data_mart_selector, os, pd):
+    # Load selected data mart from CSV
     selected_table = data_mart_selector.value
 
     # Display name mapping
@@ -80,13 +76,10 @@ def _(client, data_mart_selector, dataset_id, project_id):
     }
     display_name = display_names.get(selected_table, selected_table)
 
-    query = f"""
-    SELECT *
-    FROM `{project_id}.{dataset_id}.{selected_table}`
-    """
-
-    df = client.query(query).to_dataframe()
-    return df, display_name, selected_table
+    # Read CSV file
+    csv_path = os.path.join(data_dir, f"{selected_table}.csv")
+    df = pd.read_csv(csv_path)
+    return csv_path, df, display_name, selected_table
 
 
 @app.cell
@@ -428,45 +421,11 @@ def _(df, mo):
 @app.cell
 def _(mo):
     mo.md("""
-    ## 🔍 Custom Query Builder
+    ## 💾 Data Source Information
 
-    Execute custom SQL queries against your data marts:
+    This dashboard uses pre-exported CSV files from BigQuery data marts.
+    To run custom queries or refresh the data, use the local BigQuery connection.
     """)
-    return
-
-
-@app.cell
-def _(dataset_id, mo, project_id):
-    custom_query_input = mo.ui.text_area(
-        value=f"SELECT * FROM `{project_id}.{dataset_id}.dm_customer_360` LIMIT 100",
-        label="SQL Query:",
-        rows=5,
-        full_width=True
-    )
-    custom_query_input
-    return (custom_query_input,)
-
-
-@app.cell
-def _(mo):
-    execute_button = mo.ui.button(label="Execute Query", kind="success")
-    execute_button
-    return (execute_button,)
-
-
-@app.cell
-def _(client, custom_query_input, execute_button, mo):
-    if execute_button.value:
-        try:
-            custom_df = client.query(custom_query_input.value).to_dataframe()
-            mo.vstack([
-                mo.md(f"### Query Results ({len(custom_df)} rows)"),
-                mo.ui.table(custom_df, selection=None)
-            ])
-        except Exception as e:
-            mo.md(f"**Error executing query:** {str(e)}")
-    else:
-        mo.md("*Click 'Execute Query' to run your custom SQL*")
     return
 
 
@@ -485,10 +444,10 @@ def _(mo):
     4. **dm_sleep_health_analysis**: Sleep health research with activity and stress correlations
     5. **dm_data_quality_dashboard**: Data quality monitoring across all sources and dimensions
 
-    ### BigQuery Connection:
-    - **Project:** dw-health-insurance-bipm
-    - **Dataset:** raw_dataset_data_marts
-    - **Connection:** Google Cloud BigQuery MCP Server
+    ### Data Source:
+    - **Format:** CSV files (exported from BigQuery)
+    - **Location:** data/ directory
+    - **Original Source:** dbt + BigQuery 5-Layer Data Warehouse
 
     ---
 

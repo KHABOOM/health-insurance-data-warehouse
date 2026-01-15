@@ -161,6 +161,9 @@ $RECYCLE.BIN/
 # data/
 # raw_data/
 
+# Allow CSV files in data directory (for marimo dashboard)
+!data/*.csv
+
 # ========================
 # Build & Compiled Files
 # ========================
