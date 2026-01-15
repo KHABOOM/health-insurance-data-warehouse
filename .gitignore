@@ -24,6 +24,7 @@ profiles.yml
 !dbt_health_insurance/packages.yml
 !dbt_health_insurance/**/schema.yml
 !dbt_health_insurance/**/sources.yml
+!layouts/*.json
 
 # Environment files
 .env
