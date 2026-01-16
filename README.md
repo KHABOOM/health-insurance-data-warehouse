@@ -24,7 +24,7 @@
 
 This project delivers a **complete enterprise data warehouse** for health and insurance analytics with 5 architectural layers: staging, cleaned, attribution, dimensional (star schema), and analytics (data marts).
 
-### ✨ Highlights
+### Highlights
 
 <table>
 <tr>
@@ -356,7 +356,7 @@ dbt test --select test_type:relationships
 
 ---
 
-## 📈 Data Quality Improvements
+## Data Quality Improvements
 
 <div align="center">
 
