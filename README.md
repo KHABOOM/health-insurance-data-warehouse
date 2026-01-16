@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏥 Health Insurance Data Warehouse
+# Health Insurance Data Warehouse
 
 ### Complete Enterprise Data Warehouse with Dimensional Modeling & Analytics
 
@@ -20,7 +20,7 @@
 
 </div>
 
-## 🎯 Overview
+## Overview
 
 This project delivers a **complete enterprise data warehouse** for health and insurance analytics with 5 architectural layers: staging, cleaned, attribution, dimensional (star schema), and analytics (data marts).
 
@@ -30,7 +30,7 @@ This project delivers a **complete enterprise data warehouse** for health and in
 <tr>
 <td width="50%">
 
-**🏗️ 5-Layer Architecture**
+**5-Layer Architecture**
 - Staging → Cleaned → Attribution → Star Schema → Data Marts
 - 18 dbt models across 5 BigQuery datasets
 - ~94,000 rows in fact table
@@ -39,7 +39,7 @@ This project delivers a **complete enterprise data warehouse** for health and in
 </td>
 <td width="50%">
 
-**🧪 Comprehensive Testing**
+**Comprehensive Testing**
 - 39+ automated quality tests
 - Primary & foreign key validation
 - Referential integrity checks
@@ -50,7 +50,7 @@ This project delivers a **complete enterprise data warehouse** for health and in
 <tr>
 <td width="50%">
 
-**📊 Star Schema & Data Marts**
+**Star Schema & Data Marts**
 - 3 dimension tables + 1 fact table
 - 5 pre-aggregated analytics tables
 - Customer 360 view with risk scoring
@@ -59,7 +59,7 @@ This project delivers a **complete enterprise data warehouse** for health and in
 </td>
 <td width="50%">
 
-**📚 Production-Grade Docs**
+**Production-Grade Docs**
 - 13+ markdown documentation files
 - Architecture diagrams & lineage
 - Role-based navigation guides
@@ -71,7 +71,7 @@ This project delivers a **complete enterprise data warehouse** for health and in
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### **Complete 5-Layer Data Warehouse**
 
@@ -93,7 +93,7 @@ graph TD
     style G fill:#27ae60
 ```
 
-### 📦 Complete Data Pipeline Flow
+### Complete Data Pipeline Flow
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -155,7 +155,7 @@ graph TD
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -169,13 +169,13 @@ dbt --version
 
 ### Setup in 3 Steps
 
-**1️⃣ Clone & Navigate**
+**1. Clone & Navigate**
 ```bash
 git clone https://github.com/njaltran/health-insurance-data-warehouse.git
 cd health-insurance-data-warehouse/dbt_health_insurance
 ```
 
-**2️⃣ Configure BigQuery**
+**2. Configure BigQuery**
 
 Create `~/.dbt/profiles.yml`:
 
@@ -192,7 +192,7 @@ health_insurance:
       location: EU
 ```
 
-**3️⃣ Install & Run Complete Pipeline**
+**3. Install & Run Complete Pipeline**
 
 ```bash
 # Install dbt packages
@@ -223,7 +223,7 @@ dbt docs generate && dbt docs serve
 
 ---
 
-## 📊 Star Schema
+## Star Schema
 
 ### **Dimensional Model (Kimball Methodology)**
 
@@ -265,7 +265,7 @@ dbt docs generate && dbt docs serve
 
 ---
 
-## 📈 Data Marts
+## Data Marts
 
 ### **5 Pre-Aggregated Analytics Tables**
 
@@ -279,17 +279,17 @@ dbt docs generate && dbt docs serve
 
 ### **Key Features**
 
-- ✅ **Pre-aggregated** - Fast query performance
-- ✅ **Business-focused** - Answer specific questions
-- ✅ **BI-ready** - Optimized for dashboards
-- ✅ **Health risk scoring** - 0-16 scale for customer segmentation
-- ✅ **Lifetime value metrics** - Customer profitability analysis
+- **Pre-aggregated** - Fast query performance
+- **Business-focused** - Answer specific questions
+- **BI-ready** - Optimized for dashboards
+- **Health risk scoring** - 0-16 scale for customer segmentation
+- **Lifetime value metrics** - Customer profitability analysis
 
 **Documentation:** See [DATA_MARTS_README.md](dbt_health_insurance/models/data_marts/DATA_MARTS_README.md)
 
 ---
 
-## 📊 Tables & Metrics
+## Tables & Metrics
 
 <div align="center">
 
@@ -297,11 +297,11 @@ dbt docs generate && dbt docs serve
 
 | Table | Type | Rows | Tests | Status |
 |-------|------|------|-------|--------|
-| `sleep_health_cleaned` | Dimension | ~320 | 11 | ✅ Production |
-| `smartwatch_data_cleaned` | Facts | ~9,800 | 7 | ✅ Production |
-| `health_insurance_person_cleaned` | Dimension | ~120 | 12 | ✅ Production |
-| `health_insurance_facts_cleaned` | Facts | ~350 | 9 | ✅ Production |
-| `attribution` | Synthetic | ~94,000 | - | ✅ Production |
+| `sleep_health_cleaned` | Dimension | ~320 | 11 | Production-ready |
+| `smartwatch_data_cleaned` | Facts | ~9,800 | 7 | Production-ready |
+| `health_insurance_person_cleaned` | Dimension | ~120 | 12 | Production-ready |
+| `health_insurance_facts_cleaned` | Facts | ~350 | 9 | Production-ready |
+| `attribution` | Synthetic | ~94,000 | - | Production-ready |
 
 ### **Layer 3: Star Schema**
 
@@ -326,7 +326,7 @@ dbt docs generate && dbt docs serve
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Test Coverage (39+ Automated Tests)
 
@@ -364,100 +364,100 @@ dbt test --select test_type:relationships
 
 | Issue | Raw Data | Complete Warehouse |
 |-------|----------|-------------------|
-| Duplicates | ❌ Present | ✅ Removed |
-| Date Formats | ❌ 5 Different | ✅ Standardized DATE |
-| Gender Values | ❌ m, f, male, MALE | ✅ male, female, other, unknown |
-| NULL Strategy | ❌ No Handling | ✅ Context-aware COALESCE |
-| Invalid Values | ❌ Heart rate=0 | ✅ Filtered with flags |
-| Type Safety | ❌ All STRING | ✅ INT64, FLOAT64, DATE |
-| Blood Pressure | ❌ Text "131/86" | ✅ Parsed (systolic/diastolic) |
-| **Dimensional Model** | ❌ None | ✅ **Star Schema (3 dims + 1 fact)** |
-| **Analytics Layer** | ❌ None | ✅ **5 Pre-aggregated Data Marts** |
-| **Customer Insights** | ❌ None | ✅ **360° View with Risk Scoring** |
+| Duplicates | Present | Removed |
+| Date Formats | 5 Different | Standardized DATE |
+| Gender Values | m, f, male, MALE | male, female, other, unknown |
+| NULL Strategy | No Handling | Context-aware COALESCE |
+| Invalid Values | Heart rate=0 | Filtered with flags |
+| Type Safety | All STRING | INT64, FLOAT64, DATE |
+| Blood Pressure | Text "131/86" | Parsed (systolic/diastolic) |
+| **Dimensional Model** | None | **Star Schema (3 dims + 1 fact)** |
+| **Analytics Layer** | None | **5 Pre-aggregated Data Marts** |
+| **Customer Insights** | None | **360° View with Risk Scoring** |
 
 </div>
 
 ---
 
-## 🔧 Data Engineering Standards
+## Data Engineering Standards
 
 This project implements **industry best practices**:
 
 <details>
 <summary><strong>🏛️ Modern Data Architecture</strong></summary>
 
-- ✅ ELT pattern (Extract-Load-Transform)
-- ✅ Schema-on-Read philosophy
-- ✅ Cloud data warehouse optimization (BigQuery)
-- ✅ 5-layer architecture (staging → cleaned → dimensional → analytics)
-- ✅ Separate datasets for logical separation
+- ELT pattern (Extract-Load-Transform)
+- Schema-on-Read philosophy
+- Cloud data warehouse optimization (BigQuery)
+- 5-layer architecture (staging → cleaned → dimensional → analytics)
+- Separate datasets for logical separation
 
 </details>
 
 <details>
 <summary><strong>📊 Data Quality & Metadata</strong></summary>
 
-- ✅ 6 dimensions of data quality (Accuracy, Completeness, Consistency, Timeliness, Uniqueness, Validity)
-- ✅ Data profiling approach
-- ✅ Metadata management (schema.yml)
-- ✅ Data lineage tracking (dbt DAG)
-- ✅ Quality monitoring dashboard
+- 6 dimensions of data quality (Accuracy, Completeness, Consistency, Timeliness, Uniqueness, Validity)
+- Data profiling approach
+- Metadata management (schema.yml)
+- Data lineage tracking (dbt DAG)
+- Quality monitoring dashboard
 
 </details>
 
 <details>
-<summary><strong>🔄 Transformation Logic</strong></summary>
+<summary><strong>Transformation Logic</strong></summary>
 
-- ✅ Deduplication patterns (ROW_NUMBER)
-- ✅ Type enforcement and sanitization
-- ✅ Temporal standardization
-- ✅ Reference data mapping
-- ✅ NULL handling strategies
+- Deduplication patterns (ROW_NUMBER)
+- Type enforcement and sanitization
+- Temporal standardization
+- Reference data mapping
+- NULL handling strategies
 - ✅ Multi-format date parsing
 
 </details>
 
 <details>
-<summary><strong>📥 Dimensional Modeling</strong></summary>
+<summary><strong>Dimensional Modeling</strong></summary>
 
-- ✅ Star schema (Kimball methodology)
-- ✅ Surrogate key architecture
-- ✅ Slowly Changing Dimensions (SCD Type 1)
-- ✅ Fact table grain definition
-- ✅ Referential integrity
-- ✅ Data quality gates
+- Star schema (Kimball methodology)
+- Surrogate key architecture
+- Slowly Changing Dimensions (SCD Type 1)
+- Fact table grain definition
+- Referential integrity
+- Data quality gates
 
 </details>
 
 <details>
-<summary><strong>📈 Analytics & BI</strong></summary>
+<summary><strong>Analytics & BI</strong></summary>
 
-- ✅ Pre-aggregated data marts
-- ✅ Customer 360 view
-- ✅ Health risk scoring (0-16 scale)
-- ✅ Financial profitability analysis
-- ✅ BI tool integration ready
+- Pre-aggregated data marts
+- Customer 360 view
+- Health risk scoring (0-16 scale)
+- Financial profitability analysis
+- BI tool integration ready
 
 </details>
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 health-insurance-data-warehouse/
 │
-├── 📂 dbt_health_insurance/          # Main dbt project
+├── dbt_health_insurance/          # Main dbt project
 │   │
-│   ├── 📂 models/
-│   │   ├── 📂 staging/               # Layer 1: Staging (4 views)
+│   ├── models/
+│   │   ├── staging/               # Layer 1: Staging (4 views)
 │   │   │   ├── stg_sleep_health.sql
 │   │   │   ├── stg_smartwatch_data.sql
 │   │   │   ├── stg_health_insurance_person.sql
 │   │   │   ├── stg_health_insurance_facts.sql
 │   │   │   └── sources.yml
 │   │   │
-│   │   ├── 📂 cleaned/               # Layer 2: Cleaned (5 tables)
+│   │   ├── cleaned/               # Layer 2: Cleaned (5 tables)
 │   │   │   ├── sleep_health_cleaned.sql
 │   │   │   ├── smartwatch_data_cleaned.sql
 │   │   │   ├── health_insurance_person_cleaned.sql
@@ -465,7 +465,7 @@ health-insurance-data-warehouse/
 │   │   │   ├── attribution.sql       # Synthetic attribution
 │   │   │   └── schema.yml            # 39+ tests
 │   │   │
-│   │   ├── 📂 star_schema/           # Layer 3: Dimensions + Fact
+│   │   ├── star_schema/           # Layer 3: Dimensions + Fact
 │   │   │   ├── dim_person.sql
 │   │   │   ├── dim_occupation.sql
 │   │   │   ├── dim_insurance.sql
@@ -473,7 +473,7 @@ health-insurance-data-warehouse/
 │   │   │   ├── STAR_SCHEMA_README.md
 │   │   │   └── DEPLOYMENT.md
 │   │   │
-│   │   └── 📂 data_marts/            # Layer 4: Analytics
+│   │   └── data_marts/            # Layer 4: Analytics
 │   │       ├── dm_health_by_demographics.sql
 │   │       ├── dm_insurance_profitability.sql
 │   │       ├── dm_sleep_health_analysis.sql
@@ -482,40 +482,40 @@ health-insurance-data-warehouse/
 │   │       ├── DATA_MARTS_README.md
 │   │       └── DEPLOYMENT_GUIDE.md
 │   │
-│   ├── 📂 macros/                    # Custom SQL macros
-│   ├── 📂 analyses/                  # Data quality reports
-│   ├── 📄 dbt_project.yml            # Project configuration
-│   ├── 📄 packages.yml               # dbt-utils dependency
+│   ├── macros/                    # Custom SQL macros
+│   ├── analyses/                  # Data quality reports
+│   ├── dbt_project.yml            # Project configuration
+│   ├── packages.yml               # dbt-utils dependency
 │   │
-│   └── 📚 Documentation
+│   └── Documentation
 │       ├── README.md                 # dbt project docs
 │       ├── QUICKSTART.md             # 5-minute setup
 │       ├── DATA_LINEAGE.md           # Lineage diagrams
 │       └── TROUBLESHOOTING.md        # Common issues
 │
-├── 📄 PROJECT_SUMMARY.md             # Complete technical overview
-├── 📄 DOCUMENTATION_INDEX.md         # Documentation navigation
-├── 📄 GITHUB_SETUP.md                # GitHub push guide
-└── 📄 README.md                      # This file
+├── PROJECT_SUMMARY.md             # Complete technical overview
+├── DOCUMENTATION_INDEX.md         # Documentation navigation
+├── GITHUB_SETUP.md                # GitHub push guide
+└── README.md                      # This file
 ```
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 <table>
 <tr>
 <td width="50%">
 
-### 📖 User Guides
-- [Quick Start Guide](dbt_health_insurance/QUICKSTART.md) - Get started in 5 minutes
+### User Guides
+- [Quick Start Guide](dbt_health_insurance/QUICKSTART.md) - Get started
 - [Troubleshooting](dbt_health_insurance/TROUBLESHOOTING.md) - Common issues & solutions
 - [Documentation Index](DOCUMENTATION_INDEX.md) - Complete navigation guide
 
 </td>
 <td width="50%">
 
-### 🔍 Technical Docs
+### Technical Docs
 - [Project Summary](PROJECT_SUMMARY.md) - Complete technical overview
 - [Data Lineage](dbt_health_insurance/DATA_LINEAGE.md) - Visual flow diagrams
 - [Star Schema Guide](dbt_health_insurance/models/star_schema/STAR_SCHEMA_README.md) - Dimensional model
@@ -527,12 +527,12 @@ health-insurance-data-warehouse/
 
 ---
 
-## 🎯 Output Locations
+## Output Locations
 
 After running `dbt run`, data is available across 5 BigQuery datasets:
 
 ```
-📍 BigQuery Project: dw-health-insurance-bipm
+BigQuery Project: dw-health-insurance-bipm
 
 ├── raw_dataset                 (Source data - 4 tables)
 ├── raw_dataset_staging         (Layer 1 - 4 views)
@@ -568,7 +568,7 @@ GROUP BY p.insurance_gender, o.occupational_category;
 
 ---
 
-## 🔗 Data Lineage
+## Data Lineage
 
 View the complete data flow and dependencies:
 
@@ -582,29 +582,29 @@ dbt docs serve
 ```
 
 **Lineage Highlights:**
-- 🔵 Source tables (4 raw tables)
-- 🟢 Staging models (4 views)
-- 🟡 Cleaned models (5 tables)
-- 🟣 Star schema (3 dimensions + 1 fact)
-- 🔷 Data marts (5 analytics tables)
-- 🔴 Test coverage (39+ tests)
-- ⚡ Complete dependency graph (DAG)
+- Source tables (4 raw tables)
+- Staging models (4 views)
+- Cleaned models (5 tables)
+- Star schema (3 dimensions + 1 fact)
+- Data marts (5 analytics tables)
+- Test coverage (39+ tests)
+- Complete dependency graph (DAG)
 
 Or view static lineage diagrams in [DATA_LINEAGE.md](dbt_health_insurance/DATA_LINEAGE.md).
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is an academic project for **HWR Berlin's Data Warehouse course**. Contributions welcome!
 
 ### How to Contribute
 
-1. 🍴 Fork the repository
-2. 🌿 Create feature branch: `git checkout -b feature/amazing-feature`
-3. ✅ Commit changes: `git commit -m 'Add amazing feature'`
-4. 📤 Push to branch: `git push origin feature/amazing-feature`
-5. 🔄 Open Pull Request
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
 
 ### Development Standards
 
@@ -615,7 +615,7 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 
 ---
 
-## 📖 References & Resources
+## References & Resources
 
 ### External Resources
 - [dbt Documentation](https://docs.getdbt.com/) - Official dbt docs
@@ -625,7 +625,7 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 
 ---
 
-## 🎓 Academic Context
+## Academic Context
 
 <table>
 <tr>
@@ -640,11 +640,11 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 <td width="40%">
 
 **Learning Objectives:**
-- ✅ ELT architecture
-- ✅ Dimensional modeling
-- ✅ Data quality engineering
-- ✅ Automated testing
-- ✅ Production-ready code
+- ELT architecture
+- Dimensional modeling
+- Data quality engineering
+- Automated testing
+- Production-ready code
 
 </td>
 </tr>
@@ -652,7 +652,7 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
 <div align="center">
 
@@ -671,13 +671,13 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 
 ---
 
-## 👤 Author
+## Author
 
 <div align="center">
 
 **Nikolas Jackaltran**
 
-🏛️ HWR Berlin | 📅 January 2026
+HWR Berlin | January 2026
 
 [GitHub](https://github.com/njaltran) • [LinkedIn](https://linkedin.com)
 
@@ -685,7 +685,7 @@ This is an academic project for **HWR Berlin's Data Warehouse course**. Contribu
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Special thanks to:
 
@@ -696,7 +696,7 @@ Special thanks to:
 
 ---
 
-## 📄 License
+## License
 
 This project is for **educational purposes** as part of HWR Berlin's Data Warehouse course.
 
